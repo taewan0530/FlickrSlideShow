@@ -8,21 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		125FF3D71EBD7FBF00E76CF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125FF3D61EBD7FBF00E76CF5 /* AppDelegate.swift */; };
-		125FF3D91EBD7FBF00E76CF5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125FF3D81EBD7FBF00E76CF5 /* ViewController.swift */; };
 		125FF3DC1EBD7FBF00E76CF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 125FF3DA1EBD7FBF00E76CF5 /* Main.storyboard */; };
 		125FF3DE1EBD7FBF00E76CF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 125FF3DD1EBD7FBF00E76CF5 /* Assets.xcassets */; };
 		125FF3E11EBD7FBF00E76CF5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 125FF3DF1EBD7FBF00E76CF5 /* LaunchScreen.storyboard */; };
+		125FF3EA1EBD838300E76CF5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125FF3E91EBD838300E76CF5 /* ViewController.swift */; };
+		125FF3EC1EBD83FC00E76CF5 /* SlideShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125FF3EB1EBD83FC00E76CF5 /* SlideShowViewController.swift */; };
+		125FF3EE1EBD841400E76CF5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125FF3ED1EBD841400E76CF5 /* BaseViewController.swift */; };
 		A6A93B390297B734FCB477CB /* Pods_FlickrSlideShow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36AC61ABEA3D1DD1700A0406 /* Pods_FlickrSlideShow.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		125FF3D31EBD7FBF00E76CF5 /* FlickrSlideShow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrSlideShow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		125FF3D61EBD7FBF00E76CF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		125FF3D81EBD7FBF00E76CF5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		125FF3DB1EBD7FBF00E76CF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		125FF3DD1EBD7FBF00E76CF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		125FF3E01EBD7FBF00E76CF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		125FF3E21EBD7FBF00E76CF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		125FF3E91EBD838300E76CF5 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		125FF3EB1EBD83FC00E76CF5 /* SlideShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideShowViewController.swift; sourceTree = "<group>"; };
+		125FF3ED1EBD841400E76CF5 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		36AC61ABEA3D1DD1700A0406 /* Pods_FlickrSlideShow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlickrSlideShow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A7335F0684C5818AE2EEDC0 /* Pods-FlickrSlideShow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrSlideShow.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlickrSlideShow/Pods-FlickrSlideShow.release.xcconfig"; sourceTree = "<group>"; };
 		6AD9D13F534C23239EC9F7DE /* Pods-FlickrSlideShow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrSlideShow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlickrSlideShow/Pods-FlickrSlideShow.debug.xcconfig"; sourceTree = "<group>"; };
@@ -61,14 +65,24 @@
 		125FF3D51EBD7FBF00E76CF5 /* FlickrSlideShow */ = {
 			isa = PBXGroup;
 			children = (
+				125FF3E81EBD838300E76CF5 /* Controller */,
 				125FF3D61EBD7FBF00E76CF5 /* AppDelegate.swift */,
-				125FF3D81EBD7FBF00E76CF5 /* ViewController.swift */,
 				125FF3DA1EBD7FBF00E76CF5 /* Main.storyboard */,
 				125FF3DD1EBD7FBF00E76CF5 /* Assets.xcassets */,
 				125FF3DF1EBD7FBF00E76CF5 /* LaunchScreen.storyboard */,
 				125FF3E21EBD7FBF00E76CF5 /* Info.plist */,
 			);
 			path = FlickrSlideShow;
+			sourceTree = "<group>";
+		};
+		125FF3E81EBD838300E76CF5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				125FF3ED1EBD841400E76CF5 /* BaseViewController.swift */,
+				125FF3E91EBD838300E76CF5 /* ViewController.swift */,
+				125FF3EB1EBD83FC00E76CF5 /* SlideShowViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		1CF75B555478E365DC4D1240 /* Pods */ = {
@@ -212,8 +226,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				125FF3D91EBD7FBF00E76CF5 /* ViewController.swift in Sources */,
+				125FF3EA1EBD838300E76CF5 /* ViewController.swift in Sources */,
+				125FF3EE1EBD841400E76CF5 /* BaseViewController.swift in Sources */,
 				125FF3D71EBD7FBF00E76CF5 /* AppDelegate.swift in Sources */,
+				125FF3EC1EBD83FC00E76CF5 /* SlideShowViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +395,7 @@
 				125FF3E71EBD7FBF00E76CF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
