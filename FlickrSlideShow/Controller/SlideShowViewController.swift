@@ -13,23 +13,38 @@ final class SlideShowViewController: BaseViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var delaySlider: UISlider!
     
+    private var slideShowTask: SlideShowTask?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.slideShowTask?.start()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.slideShowTask?.stop()
+    }
 
     private func setup() {
+        self.slideShowTask = SlideShowTask(contentType: .photos)
+        self.slideShowTask?.delegate = self
         delaySliderDidChange(self.delaySlider)
     }
     
     @IBAction func delaySliderDidChange(_ slider: UISlider) {
         let delay = Int(slider.value)
         self.title = "delay: \(delay)"
+        self.slideShowTask?.delay = Double(slider.value)
     }
 }
 
 
-extension SlideShowViewController {
+extension SlideShowViewController: SlideShowTaskDelegate {
     func imageSlide(_ nextImage: UIImage) {
         UIView.transition(
             with: self.imageView,

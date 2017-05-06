@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FlickrSlideShow" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -43,7 +43,7 @@
             </objects>
             <point key="canvasLocation" x="456.80000000000001" y="268.51574212893553"/>
         </scene>
-        <!--Slide Show View Controller-->
+        <!--Title-->
         <scene sceneID="7fm-Gq-aZL">
             <objects>
                 <viewController id="fVx-gY-6m0" customClass="SlideShowViewController" customModule="FlickrSlideShow" customModuleProvider="target" sceneMemberID="viewController">
@@ -55,7 +55,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Eez-SU-qUs">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Eez-SU-qUs">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="1" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="yvN-1B-5Jm">
@@ -76,7 +76,11 @@
                             <constraint firstAttribute="trailing" secondItem="yvN-1B-5Jm" secondAttribute="trailing" constant="56" id="bda-OQ-QTM"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="rEB-Ls-qBf">
+                        <barButtonItem key="rightBarButtonItem" title="0/0" id="KTR-ie-Jv4"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="counterItem" destination="KTR-ie-Jv4" id="yu6-0Z-Sj1"/>
                         <outlet property="delaySlider" destination="yvN-1B-5Jm" id="SUf-0s-hVk"/>
                         <outlet property="imageView" destination="Eez-SU-qUs" id="AFS-pF-mQJ"/>
                     </connections>
@@ -89,7 +93,7 @@
         <scene sceneID="4M8-AN-NXJ">
             <objects>
                 <navigationController id="B4T-3j-sKt" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="Gqb-1k-mQb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Gqb-1k-mQb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

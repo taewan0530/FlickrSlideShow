@@ -31,9 +31,6 @@ extension ItemModel {
         case medium = "_z"
         case base = "_b"
         
-        static var types: [SizeType] {
-            return [.base, .medium, .small, .thumbnail]
-        }
     }
 }
 
@@ -42,17 +39,5 @@ extension ItemModel {
     func mediaURL(by scaleType: SizeType) -> URL? {
         let urlString = self.media.replacingOccurrences(of: "_b", with: scaleType.rawValue)
         return URL(string : urlString)
-    }
-    
-    func mediaSizeType(leftCount: Int, maxCount: Int = 10) -> ItemModel.SizeType {
-        if leftCount < max(2, maxCount/5) {
-            return .thumbnail
-        } else if leftCount < max(2, maxCount/4) {
-            return .small
-        } else if leftCount < max(2, maxCount/3) {
-            return .medium
-        } else {
-            return .base
-        }
     }
 }
