@@ -122,7 +122,6 @@ fileprivate extension SlideShowTask {
     ///========
     func loadImage(by item: ItemModel, completed: @escaping (UIImage, ItemModel.SizeType)->Void) {
         //로드된게 많으면 해상도를 올려주자!
-        //평균적으로 이미지 한장을 호출하는데 사용한 시간
         let count = loadedImages.count
         var sizeType: ItemModel.SizeType = .base
         
