@@ -58,16 +58,26 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Eez-SU-qUs">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="1" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="yvN-1B-5Jm">
+                                <rect key="frame" x="54" y="601" width="267" height="31"/>
+                                <connections>
+                                    <action selector="delaySliderDidChange:" destination="fVx-gY-6m0" eventType="valueChanged" id="ODQ-oq-4EM"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="28k-Ib-sH3" firstAttribute="top" secondItem="Eez-SU-qUs" secondAttribute="bottom" id="0PZ-zg-AXv"/>
                             <constraint firstAttribute="trailing" secondItem="Eez-SU-qUs" secondAttribute="trailing" id="0SS-5c-oXg"/>
+                            <constraint firstItem="yvN-1B-5Jm" firstAttribute="leading" secondItem="wTO-ZF-2cv" secondAttribute="leading" constant="56" id="3Mk-Sh-SfY"/>
                             <constraint firstItem="Eez-SU-qUs" firstAttribute="leading" secondItem="wTO-ZF-2cv" secondAttribute="leading" id="484-3s-Jh4"/>
+                            <constraint firstItem="28k-Ib-sH3" firstAttribute="top" secondItem="yvN-1B-5Jm" secondAttribute="bottom" constant="36" id="KC4-b6-pOT"/>
                             <constraint firstItem="Eez-SU-qUs" firstAttribute="top" secondItem="wTO-ZF-2cv" secondAttribute="top" id="b3v-Fe-2o5"/>
+                            <constraint firstAttribute="trailing" secondItem="yvN-1B-5Jm" secondAttribute="trailing" constant="56" id="bda-OQ-QTM"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="delaySlider" destination="yvN-1B-5Jm" id="SUf-0s-hVk"/>
                         <outlet property="imageView" destination="Eez-SU-qUs" id="AFS-pF-mQJ"/>
                     </connections>
                 </viewController>
@@ -82,6 +92,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="Gqb-1k-mQb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="cld-Oc-SIt"/>

@@ -20,6 +20,7 @@
 		125FF3F91EBD87E400E76CF5 /* FeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125FF3F51EBD87E400E76CF5 /* FeedService.swift */; };
 		125FF4021EBD89D700E76CF5 /* Array+Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125FF4001EBD89D700E76CF5 /* Array+Shift.swift */; };
 		125FF4031EBD89D700E76CF5 /* DataRequest+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125FF4011EBD89D700E76CF5 /* DataRequest+UIImage.swift */; };
+		12F9007A1EBD8C2F00F4504C /* SlideShowTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F900791EBD8C2F00F4504C /* SlideShowTask.swift */; };
 		A6A93B390297B734FCB477CB /* Pods_FlickrSlideShow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36AC61ABEA3D1DD1700A0406 /* Pods_FlickrSlideShow.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		125FF3F51EBD87E400E76CF5 /* FeedService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedService.swift; sourceTree = "<group>"; };
 		125FF4001EBD89D700E76CF5 /* Array+Shift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Shift.swift"; sourceTree = "<group>"; };
 		125FF4011EBD89D700E76CF5 /* DataRequest+UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataRequest+UIImage.swift"; sourceTree = "<group>"; };
+		12F900791EBD8C2F00F4504C /* SlideShowTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideShowTask.swift; sourceTree = "<group>"; };
 		36AC61ABEA3D1DD1700A0406 /* Pods_FlickrSlideShow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlickrSlideShow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A7335F0684C5818AE2EEDC0 /* Pods-FlickrSlideShow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrSlideShow.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlickrSlideShow/Pods-FlickrSlideShow.release.xcconfig"; sourceTree = "<group>"; };
 		6AD9D13F534C23239EC9F7DE /* Pods-FlickrSlideShow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrSlideShow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlickrSlideShow/Pods-FlickrSlideShow.debug.xcconfig"; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			children = (
 				125FF3ED1EBD841400E76CF5 /* BaseViewController.swift */,
 				125FF3E91EBD838300E76CF5 /* ViewController.swift */,
+				12F900791EBD8C2F00F4504C /* SlideShowTask.swift */,
 				125FF3EB1EBD83FC00E76CF5 /* SlideShowViewController.swift */,
 			);
 			path = Controller;
@@ -281,6 +284,7 @@
 				125FF4021EBD89D700E76CF5 /* Array+Shift.swift in Sources */,
 				125FF3F91EBD87E400E76CF5 /* FeedService.swift in Sources */,
 				125FF3EA1EBD838300E76CF5 /* ViewController.swift in Sources */,
+				12F9007A1EBD8C2F00F4504C /* SlideShowTask.swift in Sources */,
 				125FF3EE1EBD841400E76CF5 /* BaseViewController.swift in Sources */,
 				125FF3F81EBD87E400E76CF5 /* Router.swift in Sources */,
 				125FF3D71EBD7FBF00E76CF5 /* AppDelegate.swift in Sources */,
