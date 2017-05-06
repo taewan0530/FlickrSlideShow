@@ -14,6 +14,10 @@
 		125FF3EA1EBD838300E76CF5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125FF3E91EBD838300E76CF5 /* ViewController.swift */; };
 		125FF3EC1EBD83FC00E76CF5 /* SlideShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125FF3EB1EBD83FC00E76CF5 /* SlideShowViewController.swift */; };
 		125FF3EE1EBD841400E76CF5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125FF3ED1EBD841400E76CF5 /* BaseViewController.swift */; };
+		125FF3F61EBD87E400E76CF5 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125FF3F11EBD87E400E76CF5 /* ItemModel.swift */; };
+		125FF3F71EBD87E400E76CF5 /* ObjectSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125FF3F21EBD87E400E76CF5 /* ObjectSerializable.swift */; };
+		125FF3F81EBD87E400E76CF5 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125FF3F31EBD87E400E76CF5 /* Router.swift */; };
+		125FF3F91EBD87E400E76CF5 /* FeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125FF3F51EBD87E400E76CF5 /* FeedService.swift */; };
 		A6A93B390297B734FCB477CB /* Pods_FlickrSlideShow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36AC61ABEA3D1DD1700A0406 /* Pods_FlickrSlideShow.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +31,10 @@
 		125FF3E91EBD838300E76CF5 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		125FF3EB1EBD83FC00E76CF5 /* SlideShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideShowViewController.swift; sourceTree = "<group>"; };
 		125FF3ED1EBD841400E76CF5 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		125FF3F11EBD87E400E76CF5 /* ItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
+		125FF3F21EBD87E400E76CF5 /* ObjectSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectSerializable.swift; sourceTree = "<group>"; };
+		125FF3F31EBD87E400E76CF5 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		125FF3F51EBD87E400E76CF5 /* FeedService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedService.swift; sourceTree = "<group>"; };
 		36AC61ABEA3D1DD1700A0406 /* Pods_FlickrSlideShow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlickrSlideShow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A7335F0684C5818AE2EEDC0 /* Pods-FlickrSlideShow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrSlideShow.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlickrSlideShow/Pods-FlickrSlideShow.release.xcconfig"; sourceTree = "<group>"; };
 		6AD9D13F534C23239EC9F7DE /* Pods-FlickrSlideShow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrSlideShow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlickrSlideShow/Pods-FlickrSlideShow.debug.xcconfig"; sourceTree = "<group>"; };
@@ -65,6 +73,7 @@
 		125FF3D51EBD7FBF00E76CF5 /* FlickrSlideShow */ = {
 			isa = PBXGroup;
 			children = (
+				125FF3EF1EBD87E400E76CF5 /* API */,
 				125FF3E81EBD838300E76CF5 /* Controller */,
 				125FF3D61EBD7FBF00E76CF5 /* AppDelegate.swift */,
 				125FF3DA1EBD7FBF00E76CF5 /* Main.storyboard */,
@@ -83,6 +92,33 @@
 				125FF3EB1EBD83FC00E76CF5 /* SlideShowViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		125FF3EF1EBD87E400E76CF5 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				125FF3F41EBD87E400E76CF5 /* Service */,
+				125FF3F01EBD87E400E76CF5 /* Model */,
+				125FF3F21EBD87E400E76CF5 /* ObjectSerializable.swift */,
+				125FF3F31EBD87E400E76CF5 /* Router.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		125FF3F01EBD87E400E76CF5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				125FF3F11EBD87E400E76CF5 /* ItemModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		125FF3F41EBD87E400E76CF5 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				125FF3F51EBD87E400E76CF5 /* FeedService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		1CF75B555478E365DC4D1240 /* Pods */ = {
@@ -226,10 +262,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				125FF3F61EBD87E400E76CF5 /* ItemModel.swift in Sources */,
+				125FF3F91EBD87E400E76CF5 /* FeedService.swift in Sources */,
 				125FF3EA1EBD838300E76CF5 /* ViewController.swift in Sources */,
 				125FF3EE1EBD841400E76CF5 /* BaseViewController.swift in Sources */,
+				125FF3F81EBD87E400E76CF5 /* Router.swift in Sources */,
 				125FF3D71EBD7FBF00E76CF5 /* AppDelegate.swift in Sources */,
 				125FF3EC1EBD83FC00E76CF5 /* SlideShowViewController.swift in Sources */,
+				125FF3F71EBD87E400E76CF5 /* ObjectSerializable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
