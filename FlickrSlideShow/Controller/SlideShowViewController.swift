@@ -11,12 +11,33 @@ import UIKit
 final class SlideShowViewController: BaseViewController {
 
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var delaySlider: UISlider!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.setup()
     }
 
+    private func setup() {
+        delaySliderDidChange(self.delaySlider)
+    }
+    
+    @IBAction func delaySliderDidChange(_ slider: UISlider) {
+        let delay = Int(slider.value)
+        self.title = "delay: \(delay)"
+    }
+}
 
+
+extension SlideShowViewController {
+    func imageSlide(_ nextImage: UIImage) {
+        UIView.transition(
+            with: self.imageView,
+            duration: 0.4,
+            options: [.transitionCrossDissolve],
+            animations: {
+                [weak self] in
+                self?.imageView.image = nextImage
+            }, completion: nil)
+    }
 }
