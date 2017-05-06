@@ -9,50 +9,30 @@
 import UIKit
 import Alamofire
 
+@objc
 protocol SlideShowTaskDelegate: class {
-    func imageSlide(_ nextImage: UIImage)
+    func slideShow(by nextImage: UIImage)
+    @objc optional func slideShow(timerCount: Int)
 }
 
 
 final class SlideShowTask: NSObject {
-    //최소 인터벌 타임.
-    private let interval: Double = 1.0//sec
+    fileprivate var interval: Double = 1.0
+    fileprivate var maxDownloadCount: Int = 1
+    fileprivate var minURLCount: Int = 15
+    fileprivate var minImageCount: Int = 20
     
-    //동시 다운로드 최대 갯수.
-    private let maxDownloadCount: Int = 1
+    fileprivate let service: FeedService
+    fileprivate var timer: Timer?
+    fileprivate var timerCount: Int = 0
     
-    //n개의 url이 없으면 더 불러온다.
-    private let minURLCount: Int = 15
+    fileprivate var currentDounloads: [URL: DataRequest] = [:]
+    fileprivate var feedItems: [ItemModel] = []
+    fileprivate var loadedImages: ImageDictionary = ImageDictionary()
     
-    //n개 이미지 이하일때 이미지를 로드한다.
-    private let minImageCount: Int = 20
+    fileprivate weak var currentImage: UIImage? = nil
     
-    
-    private let service: FeedService
-    private var timer: Timer?
-    private var timerCount: Int = 0
-    
-    private var downloadRequests: [URL: DataRequest] = [:]
-    
-    private var items: [ItemModel] = []
-    
-    private var loadedImages: [ItemModel.SizeType : [UIImage]] = [:]
-    
-    private var loadedImagesCount: Int {
-       return loadedImages.map { $1 }.flatMap { $0 }.count
-    }
-    
-    private var currentImage: UIImage? = nil
-    //고화질 이미지부터 내보내주자.
-    private var nextImage: UIImage? {
-        for type in ItemModel.SizeType.types {
-            guard let image = loadedImages[type]?.shift() else { continue }
-            return image
-        }
-        return nil
-    }
-    
-    var delay: Double = 1.0
+    var delay: Int = 5
     weak var delegate: SlideShowTaskDelegate?
     
     deinit {
@@ -64,97 +44,149 @@ final class SlideShowTask: NSObject {
         super.init()
         self.timer = Timer.scheduledTimer(timeInterval: interval,
                                           target: self,
-                                          selector: #selector(self.updateDidTimer),
+                                          selector: #selector(self.onUpdateTimer),
                                           userInfo: nil,
                                           repeats: true)
-        self.load()
     }
-    
-    func updateDidTimer(_ timer: Timer) {
-        self.timerCount = (timerCount + 1)%Int(delay)
-        print("counter:\(timerCount), delay:\(delay)")
-        self.load()
-        self.updateImages()
-        if self.timerCount == 0 {
-            print("next")
-            updateImage()
-        }
-    }
-    
-    func updateImage() {
-        guard let image = self.nextImage else { return }
-        self.delegate?.imageSlide(image)
-        self.currentImage = image
-    }
-    
-    func start() {
+
+    public func start() {
+        guard let timer = self.timer else { return }
         print("start")
-        timer?.fire()
+        timer.fire()
+        onUpdateTimer(timer)
     }
     
-    func stop() {
+    public  func stop() {
         print("stop")
         currentImage = nil
-        downloadRequests.forEach { $1.cancel() }
-        downloadRequests = [:]
+        currentDounloads.forEach { $1.cancel() }
+        currentDounloads.removeAll()
         timer?.invalidate()
     }
     
-    private func load() {
-        if minURLCount < items.count { return }
-        service.load { [weak self] in
-            self?.items += $0
-            self?.updateImages()
+}
+
+fileprivate extension SlideShowTask {
+    
+    @objc func onUpdateTimer(_ timer: Timer) {
+        defer {
+            self.timerCount = (self.timerCount + 1)%self.delay
+        }
+        let isShowNextImage = self.timerCount == 0
+        if isShowNextImage {
+            slideShowNextImage()
+        }
+        
+        self.loadFeeed()
+        self.loadNextImage()
+        
+        self.delegate?.slideShow?(timerCount: self.timerCount)
+    }
+    
+    func loadFeeed() {
+        if self.minURLCount < self.feedItems.count { return }
+        self.service.load { [weak self] in
+            self?.feedItems += $0
         }
     }
     
-    
-    private func loadImage(by item: ItemModel, completed: @escaping (UIImage, ItemModel.SizeType)->Void) {
-        //로드된게 많으면 해상도를 올려주자!
-        //평균적으로 이미지 한장을 호출하는데 사용한 시간
-        let sizeType = item.mediaSizeType(leftCount: loadedImagesCount, maxCount: minImageCount)
-        guard let url = item.mediaURL(by: sizeType) else { return }
-        
-        let request = Alamofire.request(url)
-        downloadRequests[url] = request
-        
-        request
-            .responseImage(queue: DispatchQueue.global()) { [weak self] (response: DataResponse<UIImage>) in
-            self?.downloadRequests.removeValue(forKey: url)
-            switch response.result {
-            case .failure(_): break
-            case .success(let image):
-                DispatchQueue.main.async {
-                    completed(image, sizeType)
-                }
-            }
-        }
-    }
-    
-    
-    private func updateImages() {
-        let cacheableCount = minImageCount - loadedImagesCount
-        let downloadableCount =  maxDownloadCount - downloadRequests.count
+    func loadNextImage() {
+        let cacheableCount = minImageCount - loadedImages.count
+        let downloadableCount =  maxDownloadCount - currentDounloads.count
         let count = max(0, min(cacheableCount, downloadableCount))
         
         if count == 0 { return }
+        guard let media = self.feedItems.shift() else { return }
+        loadImage(by: media, completed: { [weak self] image, sizeType in
+            self?.loadedImages.append(sizeType, image: image)
+            //다음 사진 로드 시도!
+            self?.loadNextImage()
+            
+            
+            if self?.currentImage == nil {
+                self?.timerCount = 0
+                self?.slideShowNextImage()
+            }
+            
+        })
+    }
+    
+    
+    func slideShowNextImage() {
+        guard let image = self.loadedImages.shift() else { return }
+        self.delegate?.slideShow(by: image)
+        self.currentImage = image
+    }
+    
+    
+    ///========
+    func loadImage(by item: ItemModel, completed: @escaping (UIImage, ItemModel.SizeType)->Void) {
+        //로드된게 많으면 해상도를 올려주자!
+        //평균적으로 이미지 한장을 호출하는데 사용한 시간
+        let count = loadedImages.count
+        var sizeType: ItemModel.SizeType = .base
         
-        print("urls:\(items.count), loaded:\(loadedImagesCount), downloading:\(downloadRequests.count)")
-        
-        if let media = items.shift() {
-            loadImage(by: media, completed: { [weak self] image, sizeType in
-                print(image.size)
-                if self?.loadedImages[sizeType] == nil {
-                    self?.loadedImages[sizeType] = []
-                }
-                
-                self?.loadedImages[sizeType]?.append(image)
-                self?.updateImages()
-                
-                if self?.currentImage == nil {
-                    self?.updateImage()
-                }
-            })
+        if count < max(2, minImageCount/5) {
+            sizeType = .thumbnail
+        } else if count < max(2, minImageCount/4) {
+            sizeType = .small
+        } else if count < max(2, minImageCount/3) {
+            sizeType = .medium
         }
+        
+        guard let url = item.mediaURL(by: sizeType) else { return }
+        
+        let request = Alamofire.request(url)
+        currentDounloads[url] = request
+        
+        request
+            .responseImage(queue: DispatchQueue.global()) { [weak self] (response: DataResponse<UIImage>) in
+                self?.currentDounloads.removeValue(forKey: url)
+                switch response.result {
+                case .success(let image):
+                    DispatchQueue.main.async {
+                        completed(image, sizeType)
+                    }
+                case .failure(_): break
+                }
+        }
+    }
+}
+
+
+extension SlideShowTask {
+    class ImageDictionary {
+        typealias SizeType = ItemModel.SizeType
+        private let types: [SizeType] = [.base, .medium, .small, .thumbnail]
+        private var images: [SizeType : [UIImage]] = [:]
+        
+        
+        var count: Int {
+            return images.map { $1 }.flatMap { $0 }.count
+        }
+        
+        subscript(key: SizeType) -> [UIImage] {
+            get {
+                if self.images[key] == nil { self.images[key] = [] }
+                return self.images[key] ?? []
+            }
+            set {
+                self.images[key] = newValue
+            }
+        }
+        
+        func append(_ key: SizeType, image: UIImage) {
+            if self.images[key] == nil { self.images[key] = [] }
+            self.images[key]?.append(image)
+        }
+        
+        func shift() -> UIImage? {
+            for type in types {
+                guard let image = self.images[type]?.shift() else { continue }
+                return image
+            }
+            return nil
+        }
+        
     }
 }

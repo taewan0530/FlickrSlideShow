@@ -43,7 +43,7 @@
             </objects>
             <point key="canvasLocation" x="456.80000000000001" y="268.51574212893553"/>
         </scene>
-        <!--Slide Show View Controller-->
+        <!--Title-->
         <scene sceneID="7fm-Gq-aZL">
             <objects>
                 <viewController id="fVx-gY-6m0" customClass="SlideShowViewController" customModule="FlickrSlideShow" customModuleProvider="target" sceneMemberID="viewController">
@@ -76,7 +76,11 @@
                             <constraint firstAttribute="trailing" secondItem="yvN-1B-5Jm" secondAttribute="trailing" constant="56" id="bda-OQ-QTM"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="rEB-Ls-qBf">
+                        <barButtonItem key="rightBarButtonItem" title="0/0" id="KTR-ie-Jv4"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="counterItem" destination="KTR-ie-Jv4" id="yu6-0Z-Sj1"/>
                         <outlet property="delaySlider" destination="yvN-1B-5Jm" id="SUf-0s-hVk"/>
                         <outlet property="imageView" destination="Eez-SU-qUs" id="AFS-pF-mQJ"/>
                     </connections>
