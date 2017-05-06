@@ -12,8 +12,10 @@ final class SlideShowViewController: BaseViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var delaySlider: UISlider!
+    @IBOutlet weak var counterItem: UIBarButtonItem!
     
     private var slideShowTask: SlideShowTask?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,13 +41,13 @@ final class SlideShowViewController: BaseViewController {
     @IBAction func delaySliderDidChange(_ slider: UISlider) {
         let delay = Int(slider.value)
         self.title = "delay: \(delay)"
-        self.slideShowTask?.delay = Double(slider.value)
+        self.slideShowTask?.delay = delay
     }
 }
 
 
 extension SlideShowViewController: SlideShowTaskDelegate {
-    func imageSlide(_ nextImage: UIImage) {
+    func slideShow(by nextImage: UIImage) {
         UIView.transition(
             with: self.imageView,
             duration: 0.4,
@@ -54,5 +56,10 @@ extension SlideShowViewController: SlideShowTaskDelegate {
                 [weak self] in
                 self?.imageView.image = nextImage
             }, completion: nil)
+    }
+    
+    func slideShow(timerCount: Int) {
+        let delay = Int(self.delaySlider.value)
+        counterItem.title = "\(timerCount)/\(delay)"
     }
 }
