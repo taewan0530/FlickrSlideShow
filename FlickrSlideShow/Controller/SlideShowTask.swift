@@ -24,7 +24,6 @@ final class SlideShowTask: NSObject {
     fileprivate let service: FeedService
     fileprivate var timer: Timer?
     fileprivate var timerCount: Int = 0
-    fileprivate var isLoadFirstImage = false
     
     fileprivate weak var currentImage: UIImage? = nil
     
